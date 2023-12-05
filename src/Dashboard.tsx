@@ -1,9 +1,9 @@
-import { useAccount, useConnect, useRecords } from '@puzzlehq/sdk';
-import { useEffect, useState } from 'react';
+import {useAccount, useConnect, useRecords} from '@puzzlehq/sdk';
+import {useEffect, useState} from 'react';
 import Mint from './components/mint';
-import { PROGRAM_ID } from './main';
 import Transfer from './components/transfer';
 import Balance from './components/balance';
+import {PROGRAM_ID} from "./constants.ts";
 
 function Dashboard() {
   const { account } = useAccount();
@@ -42,8 +42,6 @@ function Dashboard() {
     return <>loading...</>
   }
 
-
-  console.log(account);
   if (!account) {
     return <p>loading account info...</p>
   }

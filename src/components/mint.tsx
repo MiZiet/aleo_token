@@ -1,10 +1,12 @@
 import {EventType, useEvents, useRequestCreateEvent} from '@puzzlehq/sdk';
 import {useState} from 'react';
-import {PROGRAM_ID} from '../main';
+
+import {PROGRAM_ID} from "../constants.ts";
 
 function Mint() {
   const [recipient, setRecipient] = useState<string | undefined>();
   const [amount, setAmount] = useState<string | undefined>();
+  const [mintType, setMintType] = useState<'private' | 'public'>('private')
 
   const {
     requestCreateEvent,
@@ -13,7 +15,7 @@ function Mint() {
     error
   } = useRequestCreateEvent({
     programId: 'essa_1337.aleo',
-    functionId: 'mint_private',
+    functionId: mintType === 'private' ? 'mint_private' : 'mint_public',
     inputs: [recipient ?? '', amount + 'u64'],
     type: EventType.Execute,
     fee: 0.25,
@@ -25,6 +27,13 @@ function Mint() {
   return (
     <div className='w-full border rounded-lg flex flex-col items-center justify-center gap-4 p-4'>
       <span className='text-xl font-bold'>Mint</span>
+      <div className='w-full flex items-center justify-center gap-4 p-4'>
+        <label className='text-l font-bold' htmlFor="mint-type">Mint type</label>
+        <div><input defaultChecked onInput={() => setMintType('private')} type="radio" value="Private"
+                    name="mint-type"/> Private
+        </div>
+        <div><input onInput={() => setMintType('public')} type="radio" value="Public" name="mint-type"/> Public</div>
+      </div>
       <div className='w-[80%]'>
         <label htmlFor="recipient" className="block text-sm font-medium leading-6">
           Recipient

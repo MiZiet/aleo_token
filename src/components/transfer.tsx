@@ -1,6 +1,7 @@
 import { EventType, RecordWithPlaintext, useRecords, useRequestCreateEvent } from "@puzzlehq/sdk";
 import { useEffect, useState } from "react";
-import { PROGRAM_ID } from "../main";
+
+import {PROGRAM_ID} from "../constants.ts";
 
 function Transfer() {
 
@@ -52,7 +53,6 @@ function Transfer() {
       setIsReadyToExecute(false);
     }
   }, [isReadyToExecute]);
-
 
   return (
     <div className='w-full border rounded-lg flex flex-col items-center justify-center gap-4 p-4'>

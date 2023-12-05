@@ -1,9 +1,7 @@
 import ReactDOM from 'react-dom/client';
 import App from './App.js';
 import './index.css';
-import { configureConnection } from '@puzzlehq/sdk';
-
-export const PROGRAM_ID = 'essa_1337.aleo';
+import {configureConnection} from '@puzzlehq/sdk';
 
 (async () => {
   configureConnection({
