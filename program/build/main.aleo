@@ -1,4 +1,4 @@
-program zksummit_token_v10.aleo;
+program essa_1337.aleo;
 
 record ZK10:
     owner as address.private;
@@ -6,14 +6,14 @@ record ZK10:
 
 
 mapping account:
-	key left as address.public;
-	value right as u64.public;
+	key as address.public;
+	value as u64.public;
 
 function mint_public:
     input r0 as address.public;
     input r1 as u64.public;
-
-    finalize r0 r1;
+    async mint_public r0 r1 into r2;
+    output r2 as essa_1337.aleo/mint_public.future;
 
 finalize mint_public:
     input r0 as address.public;
@@ -33,8 +33,8 @@ function mint_private:
 function transfer_public:
     input r0 as address.public;
     input r1 as u64.public;
-
-    finalize self.caller r0 r1;
+    async transfer_public self.caller r0 r1 into r2;
+    output r2 as essa_1337.aleo/transfer_public.future;
 
 finalize transfer_public:
     input r0 as address.public;
@@ -65,9 +65,9 @@ function transfer_private_to_public:
     input r2 as u64.public;
     sub r0.amount r2 into r3;
     cast r0.owner r3 into r4 as ZK10.record;
+    async transfer_private_to_public r1 r2 into r5;
     output r4 as ZK10.record;
-
-    finalize r1 r2;
+    output r5 as essa_1337.aleo/transfer_private_to_public.future;
 
 finalize transfer_private_to_public:
     input r0 as address.public;
@@ -81,9 +81,9 @@ function transfer_public_to_private:
     input r0 as address.public;
     input r1 as u64.public;
     cast r0 r1 into r2 as ZK10.record;
+    async transfer_public_to_private self.caller r1 into r3;
     output r2 as ZK10.record;
-
-    finalize self.caller r1;
+    output r3 as essa_1337.aleo/transfer_public_to_private.future;
 
 finalize transfer_public_to_private:
     input r0 as address.public;

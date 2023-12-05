@@ -3,13 +3,13 @@ import App from './App.js';
 import './index.css';
 import { configureConnection } from '@puzzlehq/sdk';
 
-export const PROGRAM_ID = 'zksummit_token_v10.aleo';
+export const PROGRAM_ID = 'essa_1337.aleo';
 
 (async () => {
   configureConnection({
-    dAppName:'Build-A-Token',
+    dAppName:'Build-A-Token-MiZiet-edit',
     dAppDescription:'Create and manage your own custom token.',
-    dAppUrl:'https://zksummit10.vercel.app',
+    dAppUrl:'http://localhost:5173/',
     dAppIconURL:'https://link.to/assets/your_logo.png'
   });
   return ReactDOM.createRoot(document.getElementById('root')!).render(

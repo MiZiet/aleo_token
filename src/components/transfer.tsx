@@ -9,7 +9,7 @@ function Transfer() {
   const [record, setRecord] = useState<RecordWithPlaintext | undefined>();
   const [isReadyToExecute, setIsReadyToExecute] = useState(false);
 
-  const { records } = useRecords({ filter: { type: "unspent", programId: PROGRAM_ID } });
+  const { records } = useRecords({ filter: { type: "unspent", programIds: [PROGRAM_ID] } });
 
   const {
     requestCreateEvent,

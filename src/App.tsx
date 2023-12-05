@@ -3,9 +3,10 @@ import Dashboard from './Dashboard.js';
 import Header from './components/header.js';
 
 function App() {
-  const { connect, loading } = useConnect();
+  const { connect, loading, error } = useConnect();
   const { account } = useAccount();
-
+  error && console.log('useConnect error:', error)
+  console.log(account)
   return (
     <div className='w-full h-full flex justify-center items-center'>
       <Header address={account?.address} />

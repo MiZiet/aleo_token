@@ -1,4 +1,4 @@
-program zksummit_token_v10.aleo {
+program essa_1337.aleo {
   mapping account: address => u64;
 
   record ZK10 {
@@ -10,7 +10,7 @@ program zksummit_token_v10.aleo {
   transition mint_public(public receiver: address, public amount: u64) {
     // Only OWNER_ADDRESS can mint -- think of this as JPOWELL and Money printer priveleges
     // Removing assertion for demo at ZK Summit for iOS
-    // assert_eq(self.caller, OWNER_ADDRESS);
+    // assert_eq(self.caller, aleo15g0ldc2s6a7fpt7q8e4cq4c94908ksgy62rmp3v93w43e47quv8s9dfmmt);
     return then finalize(receiver, amount);
   }
 
@@ -22,7 +22,7 @@ program zksummit_token_v10.aleo {
   transition mint_private(receiver: address, amount: u64) -> ZK10 {
     // Only OWNER_ADDRESS can mint -- think of this as JPOWELL and Money printer priveleges
     // Removing assertion for demo at ZK Summit for iOS
-    // assert_eq(self.caller, OWNER_ADDRESS);
+    // assert_eq(self.caller, aleo15g0ldc2s6a7fpt7q8e4cq4c94908ksgy62rmp3v93w43e47quv8s9dfmmt);
     return ZK10 {
       owner: receiver,
       amount: amount,

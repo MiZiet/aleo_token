@@ -1,6 +1,6 @@
-import { EventType, useEvents, useRequestCreateEvent } from '@puzzlehq/sdk';
-import { useState } from 'react';
-import { PROGRAM_ID } from '../main';
+import {EventType, useEvents, useRequestCreateEvent} from '@puzzlehq/sdk';
+import {useState} from 'react';
+import {PROGRAM_ID} from '../main';
 
 function Mint() {
   const [recipient, setRecipient] = useState<string | undefined>();
@@ -12,15 +12,15 @@ function Mint() {
     eventId,
     error
   } = useRequestCreateEvent({
-    programId: 'zksummit_token_v10.aleo',
+    programId: 'essa_1337.aleo',
     functionId: 'mint_private',
     inputs: [recipient ?? '', amount + 'u64'],
     type: EventType.Execute,
     fee: 0.25,
   })
 
-  const { events } = useEvents({ filter: { programId: PROGRAM_ID, type: EventType.Execute } });
-  const event = events.find((e) => e._id === eventId);
+  const {events} = useEvents({filter: {programId: PROGRAM_ID, type: EventType.Execute}});
+  const event = events?.find((e) => e._id === eventId);
 
   return (
     <div className='w-full border rounded-lg flex flex-col items-center justify-center gap-4 p-4'>
@@ -35,7 +35,9 @@ function Mint() {
             id="recipient"
             className="block w-full rounded-md border-0 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             placeholder="aleo168l7zt7686ns54qmweda5ngs28c9jr6rdehlezdcv6ssr899m5qq4f4qgy"
-            onChange={(e) => {setRecipient(e.target.value)}}
+            onChange={(e) => {
+              setRecipient(e.target.value)
+            }}
           />
         </div>
       </div>
@@ -49,11 +51,13 @@ function Mint() {
             id="amount"
             className="block w-full rounded-md border-0 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             placeholder="10"
-            onChange={(e) => {setAmount(e.target.value)}}
+            onChange={(e) => {
+              setAmount(e.target.value)
+            }}
           />
         </div>
       </div>
-      <button 
+      <button
         disabled={execute_loading || !amount || !recipient}
         onClick={requestCreateEvent}
       >
